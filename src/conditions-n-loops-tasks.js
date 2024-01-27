@@ -108,8 +108,6 @@ function isIsoscelesTriangle(a, b, c) {
   return true;
 }
 
-isIsoscelesTriangle(3, 1, 3);
-
 /**
  * Converts a number to Roman numerals. The number will be between 1 and 39.
  * In this task, the use of methods of the String and Array classes is not allowed.
@@ -124,8 +122,36 @@ isIsoscelesTriangle(3, 1, 3);
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  let romanNumber = '';
+  let number = num;
+  const tens = Math.trunc(number / 10);
+  for (let i = 0; i < tens; i += 1) {
+    romanNumber += 'X';
+  }
+  number %= 10;
+  switch (number) {
+    case 9: {
+      romanNumber += 'IX';
+      break;
+    }
+    case 4: {
+      romanNumber += 'IV';
+      break;
+    }
+    default: {
+      const fives = Math.trunc(number / 5);
+      if (fives) {
+        romanNumber += 'V';
+      }
+      number %= 5;
+      for (let i = 0; i < number; i += 1) {
+        romanNumber += 'I';
+      }
+    }
+  }
+
+  return romanNumber;
 }
 
 /**
