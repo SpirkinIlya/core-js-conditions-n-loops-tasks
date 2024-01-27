@@ -70,8 +70,51 @@ function getMaxNumber(a, b, c) {
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  */
-function canQueenCaptureKing(/* queen, king */) {
-  throw new Error('Not implemented');
+function canQueenCaptureKing(queen, king) {
+  if (queen.x === king.x) {
+    return true;
+  }
+  if (queen.y === king.y) {
+    return true;
+  }
+  let xQueen = queen.x + 1;
+  let yQueen = queen.y + 1;
+  const boardSize = 8;
+  while (xQueen <= boardSize && yQueen <= boardSize) {
+    if (xQueen === king.x && yQueen === king.y) {
+      return true;
+    }
+    xQueen += 1;
+    yQueen += 1;
+  }
+  xQueen = queen.x - 1;
+  yQueen = queen.y - 1;
+  while (xQueen >= 1 && yQueen >= 1) {
+    if (xQueen === king.x && yQueen === king.y) {
+      return true;
+    }
+    xQueen -= 1;
+    yQueen -= 1;
+  }
+  xQueen = queen.x + 1;
+  yQueen = queen.y - 1;
+  while (xQueen <= boardSize && yQueen >= 1) {
+    if (xQueen === king.x && yQueen === king.y) {
+      return true;
+    }
+    xQueen += 1;
+    yQueen -= 1;
+  }
+  xQueen = queen.x - 1;
+  yQueen = queen.y + 1;
+  while (xQueen >= 1 && yQueen <= boardSize) {
+    if (xQueen === king.x && yQueen === king.y) {
+      return true;
+    }
+    xQueen -= 1;
+    yQueen += 1;
+  }
+  return false;
 }
 
 /**
